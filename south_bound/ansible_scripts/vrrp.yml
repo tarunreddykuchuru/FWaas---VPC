@@ -1,0 +1,32 @@
+---
+- name: Configure VRRP
+  hosts: "{{ namespace_tenant }}{{ hostname }}"
+
+  vars:
+
+    virtual_ip: 10.7.7.100
+    vrrp_interface: enp8s0
+   
+
+  tasks:
+    - name: Configure active standby links
+      become: true
+      vars:
+        interface_name: "{{vrrp_interface}}"
+      block:
+        - name: Install keepalived package
+          apt:
+            name: keepalived
+            state: present
+
+        - name: Configure keepalived
+          template:
+            src: "{{src_dir}}/keepalived.conf.j2"
+            dest: /etc/keepalived/keepalived.conf
+            mode: "0644"
+
+        - name: Start keepalived service
+          service:
+            name: keepalived
+            state: started
+

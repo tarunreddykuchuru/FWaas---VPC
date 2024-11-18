@@ -1,0 +1,20 @@
+{
+    "tenant_name": "team10",
+    "tenant_code": "123456",
+    
+    "Networks" : [
+                   
+        
+                    ],
+    "VMs": [
+        
+              
+            ],
+
+    "Firewall":{
+                "firewall_vcpus": "2",
+                "firewall_ram_mb": "2048",
+                "firewall_disk_size": "10"
+                }   
+
+}
